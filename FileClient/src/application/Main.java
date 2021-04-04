@@ -24,6 +24,7 @@ public class Main extends Application {
 	public ListView<String> listViewLeft = new ListView<String>();
 	public ListView<String> listViewRight = new ListView<String>();
 
+	// Variables to config
 	public static int SERVER_PORT = 8182; // This is the port the server will be listening to
 	public static String SERVER_HOST = "localhost"; // This is the server address
 	public static String FILES_DIRECTORY = "files"; // location of the file directory
@@ -45,7 +46,7 @@ public class Main extends Application {
 			listViewLeft.setPrefWidth(450);// set width of the ListView
 			listViewRight.setPrefWidth(450);
 
-			Scene scene = new Scene(mainBox, 900, 800);// declare a scene with the boxes above and dimensions
+			Scene scene = new Scene(mainBox, 900, 430);// declare a scene with the boxes above and dimensions
 			primaryStage.setScene(scene);
 			primaryStage.show();// display the stage containing the scene
 		} catch (Exception e) {

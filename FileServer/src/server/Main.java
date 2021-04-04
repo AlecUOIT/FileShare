@@ -12,7 +12,7 @@ public class Main {
 
 	// Variables to config
 	public static int SERVER_PORT = 8182; // This is the port the server will be listening to
-	public static int MAX_THREADS = 10; // max number of threads supported
+	public static int MAX_THREADS = 1000; // max number of threads supported
 	public static String FILES_DIRECTORY = "files"; // location of the file directory
 
 	public Main() {
