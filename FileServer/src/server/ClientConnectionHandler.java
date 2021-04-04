@@ -21,12 +21,9 @@ public class ClientConnectionHandler extends Thread {
 		this.socket = socket;
 		this.filesDirectory = directory;
 		this.files = new File(directory);
-		System.out.println("Thread init");
-
 	}
 
 	public void start() {
-		System.out.println("Thread start");
 		boolean actionCompleted = false;
 		while (!actionCompleted) {
 			try {
@@ -53,12 +50,13 @@ public class ClientConnectionHandler extends Thread {
 		while ((line = in.readLine()) != null) {// loop while there is data to process
 			comand = line.split(" ")[0];// store contents of line before the first space
 			if (comand.contentEquals("DIR")) {
-				System.out.println(comand + " comand: sending file list");// write to console
+				System.out.println(comand + " comand received");// write to console
 				PrintStream ps = new PrintStream(socket.getOutputStream());// open PrintStream to send data to client
 				ps.println(dirComand());// send result of dirComand which will be a list of files
 				ps.flush();
 			} else if (comand.contentEquals("UPLOAD")) {
 				String fileName = line.substring(line.indexOf(" ") + 1, line.length());
+				System.out.println(comand + " filename: " + fileName);
 				uploadComand(fileName, in.readLine());// call uploadComand and pass the filename and contents of next
 														// line which should contain the file
 			} else if (comand.contentEquals("DOWNLOAD")) {
@@ -77,12 +75,12 @@ public class ClientConnectionHandler extends Thread {
 	// process commands
 	public String dirComand() {
 		System.out.println("sending file list from: " + files.getAbsolutePath());
-		return String.join(", ", files.list());// return a string which contains the list of file names, seperated by a
+		return String.join(", ", files.list());// return a string which contains the list of file names, separated by a
 												// comma
 	}
 
 	public boolean uploadComand(String fileName, String contents) {
-		System.out.println("Writing to file: " + fileName + " Contents: " + contents);
+		System.out.println("Writing to file: " + fileName + "\nContents: " + contents);
 		try {
 			Files.writeString(Paths.get(files.getAbsolutePath() + "/" + fileName), contents);// write contents to local
 																								// file fileName

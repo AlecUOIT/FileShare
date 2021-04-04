@@ -37,7 +37,7 @@ public class Main {
 
 		} catch (IOException e) {
 			System.err.println(
-					"Error while creating server connection, please make sure port " + SERVER_PORT + "is free");
+					"Error while creating server connection, please make sure port " + SERVER_PORT + " is free");
 		}
 
 	}

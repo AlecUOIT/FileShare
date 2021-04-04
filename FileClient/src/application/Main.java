@@ -60,14 +60,25 @@ public class Main extends Application {
 		downloadButton.setOnAction(actionEvent -> {
 			String selected = listViewRight.getSelectionModel().getSelectedItem();// set string to the current selected
 																					// file
+			if(selected != null) {//ensure a file is selected
 			System.out.println("Downloading: " + selected);
 			downloadFile(selected);// call downloadFile method passing name of the selected file
+			}else {
+				System.out.println("Please select a file to download");
+			}
+			selected = null;
 		});
 
 		uploadButton.setOnAction(actionEvent -> {
 			String selected = listViewLeft.getSelectionModel().getSelectedItem();
-			System.out.println("Uploading: " + selected);
-			uploadFile(selected);// call uploadFile method passing name of the selected file
+			
+			if(selected != null) {//ensure a file is selected
+				System.out.println("Uploading: " + selected);
+				uploadFile(selected);// call uploadFile method passing name of the selected file
+			}else {
+				System.out.println("Please select a file to upload");
+			}
+			selected = null;
 		});
 
 		refreshButton.setOnAction(actionEvent -> {
@@ -121,7 +132,7 @@ public class Main extends Application {
 	// the variable "fileName"
 	// the file contents will be whatever is in the passed variable "contents"
 	public void writeLocalFile(String fileName, String contents) {
-		System.out.println("Writing to file: " + fileName + " Contents: " + contents);
+		System.out.println("Writing to file: " + fileName + "\nContents: " + contents);
 		try {
 			Files.writeString(Paths.get(localFiles.getAbsolutePath() + "/" + fileName), contents);
 		} catch (IOException e) {
